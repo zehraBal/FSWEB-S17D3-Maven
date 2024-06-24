@@ -348,19 +348,16 @@ class MainTest {
                 .andExpect(jsonPath("$.status").value(HttpStatus.NOT_FOUND.value()));
     }
 
-    @DisplayName("ZooGlobalExceptionHandler:HandleGenericException")
     @Test
+    @DisplayName("ZooGlobalExceptionHandler:HandleGenericException")
     void testHandleGenericException() throws Exception {
-
-
-        Koala invalidKoala = new Koala();
-
-        mockMvc.perform(post("/kangaroos")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(invalidKoala)))
-                .andExpect(status().isInternalServerError())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.message").isNotEmpty())
-                .andExpect(jsonPath("$.status").value(HttpStatus.INTERNAL_SERVER_ERROR.value()));
+    Kangaroo invalidKangaroo = new Kangaroo();
+    mockMvc.perform(post("/kangaroos")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(invalidKangaroo)))
+            .andExpect(status().isBadRequest())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.message").isNotEmpty())
+            .andExpect(jsonPath("$.status").value(HttpStatus.BAD_REQUEST.value()));
     }
 }
