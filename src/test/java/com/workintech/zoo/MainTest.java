@@ -44,7 +44,7 @@ class MainTest {
     @BeforeEach
     void setup() {
 
-        kangaroo = new Kangaroo(1, "Kenny", 2.0, 85.0, "Male", false);
+        kangaroo = new Kangaroo(1, "Kenny", 2.0, 85.0, "Male", 75.0,false);
         koala = new Koala(1, "Kara", 20.0, 15.0, "Female");
 
     }
@@ -53,14 +53,15 @@ class MainTest {
     @DisplayName("Test Kangaroo Creation and Field Access")
      void testKangarooCreationAndFieldAccess() {
 
-        Kangaroo kangaroo = new Kangaroo(1, "Kenny", 2.0, 85.0, "Male", false);
+        Kangaroo kangaroo = new Kangaroo(1, "Kenny", 2.0, 85.0, "Male",75.00, false);
 
 
         assertEquals(1, kangaroo.getId());
         assertEquals("Kenny", kangaroo.getName());
         assertEquals(2.0, kangaroo.getHeight());
-        assertEquals(85.0, kangaroo.getWeight());
+        assertEquals(85.0, kangaroo.getSleepHour());
         assertEquals("Male", kangaroo.getGender());
+        assertEquals(75.0, kangaroo.getWeight());
         assertEquals(false, kangaroo.getIsAggressive());
     }
 
